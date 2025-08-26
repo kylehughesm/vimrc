@@ -1,4 +1,3 @@
-
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -41,27 +40,38 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
 augroup END
 
-" Add optional packages.
-"
-" The matchit plugin makes the % command work better, but it is not backwards
-" compatible.
-" The ! means the package won't be loaded right away but when plugins are
-" loaded during initialization.
+    " Add optional packages.
+    "
+    " The matchit plugin makes the % command work better, but it is not backwards
+    " compatible.
+    " The ! means the package won't be loaded right away but when plugins are
+    " loaded during initialization.
 if has('syntax') && has('eval')
   packadd! matchit
 endif
 
-" show line numbers on left margin
+    " show line numbers on left margin
 :set number
 
-" show existing tab with 4 spaces width
-" when indenting with '>', use 4 spaces width
-" On pressing tab, insert 4 spaces
+    " show existing tab with 4 spaces width
+    " when indenting with '>', use 4 spaces width
+    " On pressing tab, insert 4 spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" auto turn off auto indent and turn back on when pasting from clipboard
+    " auto turn off auto indent and turn back on when pasting from clipboard
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
+
+    "set colorscheme
+:colorscheme elflord
+
+    "open terminal in split window
+"set splitbelow
+"autocmd VimEnter * terminal
+
+    "Start NERDTree when opening vim and mover cursor to the window and 
+"resize it ot 20 lines
+"autocmd VimEnter * NERDTree | wincmd w | resize 20
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
@@ -70,10 +80,3 @@ function! XTermPasteBegin()
     set paste
     return ""
 endfunction
-
-call plug#begin()
-    
-    Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-    Plug 'dense-analysis/ale'
-
-call plug#end()
